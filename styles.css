@@ -8,14 +8,15 @@ body {
 
 div {
   display: flex;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
 }
 
 button {
-  height: 50px;
-  width: 50px;
-  font-size: 20px;
+  height: 80px;
+  width: 80px;
+  font-size: 28px;
   margin: 0px 5px 0px 5px;
 }
 
@@ -23,7 +24,9 @@ button {
 
 .operator {
   background-color: aquamarine;
+  font-size: 36px;
 }
+
 
 .number {
   background-color: cadetblue;
@@ -36,17 +39,34 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 400px;
-  width: 400px;
+  height: 600px;
+  width: 450px;
   padding: 20px;
-  background-color: yellow;
+  background-color: rgb(255, 94, 0);
   border: 2pt solid orangered;
     
 }
 
 #displayDiv {
   display: flex;
+  justify-content: right;
+  padding-right: 30px;
   height: 75px;
-  width: 300px;
+  width: 330px;
   background-color: white;
+  font-size: 28px;
+}
+
+
+#timesButton {
+  padding-top: 15px;
+  font-size: 42px;
+}
+
+#plusMinusButton {
+  font-size: 26px;
+}
+
+#equalsButton {
+  width: 170px;
 }
