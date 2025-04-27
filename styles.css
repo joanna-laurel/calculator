@@ -1,0 +1,52 @@
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  margin: 0px 5px 0px 5px;
+}
+
+/*classes by order of appearance*/
+
+.operator {
+  background-color: aquamarine;
+}
+
+.number {
+  background-color: cadetblue;
+}
+
+
+/*ids by order of appearance*/
+
+#calculatorDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 400px;
+  width: 400px;
+  padding: 20px;
+  background-color: yellow;
+  border: 2pt solid orangered;
+    
+}
+
+#displayDiv {
+  display: flex;
+  height: 75px;
+  width: 300px;
+  background-color: white;
+}

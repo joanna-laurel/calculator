@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>calculator</title>
 </head>
 <body>
     <div id="calculatorDiv">
         <div id="displayDiv">hello</div>
         <div id="operatorsDiv">
-            <button id="additionButton">+</button>
-            <button id="subtractionButton">-</button>
-            <button id="multiplicationButton">*</button>
-            <button id="divisionButton">/</button>
-            <button id="equalsButton">=</button>
+            <button id="plusButton" class="operator">+</button>
+            <button id="minusButton" class="operator">-</button>
+            <button id="timesButton" class="operator">*</button>
+            <button id="dividedByButton" class="operator">/</button>
+            <button id="equalsButton" class="operator">=</button>
         </div>
         <div>
-            <button id="sevenButton">7</button>
-            <button id="eightButton">8</button>
-            <button id="nineButton">9</button>
+            <button id="sevenButton" class="number">7</button>
+            <button id="eightButton" class="number">8</button>
+            <button id="nineButton" class="number">9</button>
         </div>
         <div>
-            <button id="fourButton">4</button>
-            <button id="fiveButton">5</button>
-            <button id="sixButton">6</button>
+            <button id="fourButton" class="number">4</button>
+            <button id="fiveButton" class="number">5</button>
+            <button id="sixButton" class="number">6</button>
         </div>
         <div>
-            <button id="oneButton">1</button>
-            <button id="twoButton">2</button>
-            <button id="threeButton">3</button>
+            <button id="oneButton" class="number">1</button>
+            <button id="twoButton" class="number">2</button>
+            <button id="threeButton" class="number">3</button>
         </div>
         <div>
-            <button id="zeroButton">0</button>
-            <button id="decimalButton">.</button>
+            <button id="zeroButton" class="number">0</button>
+            <button id="decimalButton" class="number">.</button>
             <button id="clearButton">AC</button>
+            <button id="backspaceButton"><--</button>
         </div>
     </div>
 </body>
