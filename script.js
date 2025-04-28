@@ -1,96 +1,48 @@
-//TO DO
-//make sure dividing by 0 doesnt crash, have good message
-//add a +/- toggle button
-//add a percent button that makes it into a decimal
-//exponent button?
-//allow successive evaluations
-//figure out how to batch process event listeners 
-//fix screen overflow -- don't show whole problem or something trickier...
-
-
-
-
 
 const display = document.getElementById("displayDiv");
-
-const one = document.getElementById("oneButton");
-const two = document.getElementById("twoButton");
-const three = document.getElementById("threeButton");
-const four = document.getElementById("fourButton");
-const five = document.getElementById("fiveButton");
-const six = document.getElementById("sixButton");
-const seven = document.getElementById("sevenButton");
-const eight = document.getElementById("eightButton");
-const nine = document.getElementById("nineButton");
-const zero = document.getElementById("zeroButton");
-
-const plus = document.getElementById("plusButton");
-const minus = document.getElementById("minusButton");
-const times = document.getElementById("timesButton");
-const dividedBy = document.getElementById("dividedByButton");
-
-const decimal = document.getElementById("decimalButton");
-const clear = document.getElementById("clearButton");
-const backspace = document.getElementById("backspaceButton");
-const equals = document.getElementById("equalsButton");
 
 let firstNumber = [];
 let operator = "";
 let secondNumber = [];
 let equalsSign = "";
-let solution = [];
+let solution = []; 
 
+addEventListeners(); 
 
-
-getUserInput(); //RIDICULOUS BUT FUNCTIONAL
-function getUserInput() {
-  console.log("getting input");
-  function chooseOne() {addDigit("1")};
-  function chooseTwo() {addDigit("2")};
-  function chooseThree() {addDigit("3")};
-  function chooseFour() {addDigit("4")};
-  function chooseFive() {addDigit("5")};
-  function chooseSix() {addDigit("6")};
-  function chooseSeven() {addDigit("7")};
-  function chooseEight() {addDigit("8")};
-  function chooseNine() {addDigit("9")};
-  function chooseZero() {addDigit("0")};
-
-  one.addEventListener("click", chooseOne);
-  two.addEventListener("click", chooseTwo);
-  three.addEventListener("click", chooseThree);
-  four.addEventListener("click", chooseFour);
-  five.addEventListener("click", chooseFive);
-  six.addEventListener("click", chooseSix);
-  seven.addEventListener("click", chooseSeven);
-  eight.addEventListener("click", chooseEight);
-  nine.addEventListener("click", chooseNine);
-  zero.addEventListener("click", chooseZero);
-
-  console.log("hello")
-
-  function chooseAddition() {selectOperator("+")};
-  function chooseSubtraction() {selectOperator("-")};
-  function chooseMultiplication() {selectOperator("*")};
-  function chooseDivision() {selectOperator("/")};
-  
-  plus.addEventListener("click", chooseAddition);
-  minus.addEventListener("click", chooseSubtraction);
-  times.addEventListener("click", chooseMultiplication);
-  dividedBy.addEventListener("click", chooseDivision);
-
-  function chooseDecimal() {addDecimal()}; 
-  function chooseClear() {clearEverything()};
-  function chooseBackspace() {backspaceOnce()};
-  function chooseEquals() {canWeOperate()}
-
-  decimal.addEventListener("click", chooseDecimal);
-  clear.addEventListener("click", chooseClear); 
-  backspace.addEventListener("click", chooseBackspace); 
-  equals.addEventListener("click", chooseEquals);
+function addEventListeners() {
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      handleClick(this.textContent, this.className, this.id);
+    })
+  })
 }
 
-function updateDisplay() { //WORKS break up display though?
+function handleClick(buttonText, buttonClass, buttonId) {
+  buttonId === "zeroButton" ? addDigit("0") :
+  buttonClass === "number" ? addDigit(buttonText) :
+  buttonText === "." ? addDecimal(".") :
+  buttonId === "plusButton" ? selectOperator("+") :
+  buttonId === "minusButton" ? selectOperator("-") :
+  buttonId === "timesButton" ? selectOperator("*") :
+  buttonId === "dividedByButton" ? selectOperator("/") :
+  buttonId === "backspaceButton" ? backspaceOnce() :
+  buttonId === "plusMinusButton" ? togglePositivity() :
+  buttonText === "AC" ? clearEverything() :
+  buttonText === "=" ? canWeOperate() : "cats"
+}
+
+function updateDisplay() { //WORKS
+  let multiply = "\u00d7";
+  let divide = "\u00f7";
+  let subtract = "\u2013";
+  
+  const displayOperator = 
+    operator == "*" ? multiply
+    : operator == "/" ? divide
+    : operator == "-" ? subtract
+    : operator;
+
   const num1 = firstNumber.length < 1 ? 
     "" : firstNumber.slice().join("");
   
@@ -100,49 +52,90 @@ function updateDisplay() { //WORKS break up display though?
   const answer = solution.length < 1 ?
     "" : solution.slice().join("");
   
-  display.textContent = (`${num1} ${operator} ${num2} ${equalsSign} ${answer}`);
-    console.log("updating content")
+  display.textContent = 
+    firstNumber.length + secondNumber.length + solution.length > 16 ?
+    (`${answer}`) : 
+    (`${num1} ${displayOperator} ${num2} ${equalsSign} ${answer}`);
   }
 
 function addDigit(userDigit) { //WORKS
-  if (operator == "" && firstNumber.length < 8 && solution == "") {
+  if (operator == "" 
+    && firstNumber.length < 8 
+    && solution == "") {
     firstNumber.push(userDigit);
-    console.log(firstNumber);
   }
-  if (operator !== "" && secondNumber.length < 8 && solution == "") {
+
+  if (operator !== "" 
+    && secondNumber.length < 8 
+    && solution == ""
+    && (firstNumber.length + secondNumber.length < 15)) {
     secondNumber.push(userDigit);
+  }
+
+  if (solution.length > 0) {
+    clearEverything();
+    firstNumber.push(userDigit);
   }
   updateDisplay();
 }
 
 function addDecimal() { //WORKS
-  console.log("adding decimal")
-  if (operator == "" && firstNumber.length < 8 && solution == ""
+  if (operator == "" 
+    && firstNumber.length < 8 
+    && solution.length < 1
     && !firstNumber.includes(".")) {
         firstNumber.push(".");
   }
 
-  if (operator !== "" && secondNumber.length < 8 && solution == ""
+  if (operator !== "" 
+    && secondNumber.length < 8 
+    && solution.length < 1
     && !secondNumber.includes(".")) {
         secondNumber.push(".");
   }
   updateDisplay();
 }
 
+function togglePositivity() {
+  if (firstNumber.length > 0 
+    && secondNumber.length < 1 
+    && !firstNumber.includes("e")) {
+      changeSigns()}
+  
+  function changeSigns() {
+    if (firstNumber[0] !== "-") {
+      firstNumber.unshift("-");
+    } else {firstNumber.shift()}
+    updateDisplay();
+  }
+}
+
 function selectOperator(userOperator) { //WORKS
-  if (operator == "") {
+  if (operator == "" 
+    && firstNumber.length > 0 
+    && !(firstNumber[0] === "." && firstNumber.length === 1)) {
     operator = userOperator;
+    updateDisplay();
   }
 
-  if (solution.length > 0) {
+  if (solution.length > 0 && !solution.includes("e")) {
     firstNumber = solution.slice();
     console.log(firstNumber);
     operator = userOperator;
     secondNumber = [];
     equalsSign = ""
     solution = [];
+    updateDisplay();
   }
-  updateDisplay();
+
+  if (display.textContent == "(maybe start over)") {
+    display.textContent = "lol for real tho";
+  }
+  
+  if (display.textContent == "can't divide by cat!") {
+    display.textContent = "(maybe start over)";
+  }
+
 }
 
 function backspaceOnce() { //WORKS
@@ -162,7 +155,7 @@ function clearEverything() { //WORKS
   secondNumber = [];
   equalsSign = "";
   solution = [];
-  display.textContent = "more math please!";
+  display.textContent = ""; //doesn't work
 }
 
 function canWeOperate() { //WORKS
@@ -173,14 +166,15 @@ function canWeOperate() { //WORKS
 }
 
 function operate() { //WORKS
-  console.log("operating")
   let num1 = parseFloat(firstNumber.slice().join(""));
   let num2 = parseFloat(secondNumber.slice().join(""));
-  console.log(num1, num2);
+  
   answer = calculate(num1, operator, num2);
-  answerRounded = Math.round(answer * 10000000) / 10000000;
-  solution = answerRounded.toString().split("");
-  console.log(solution);
+
+  adjustedAnswer = answer == "can't divide by cat!" ? "can't divide by cat!"
+    : Math.round(answer * 10000000) / 10000000;
+  
+  solution = adjustedAnswer.toString().split("");
   equalsSign = "=";
   updateDisplay();
 }
@@ -192,10 +186,6 @@ function calculate(num1, operator, num2) { //WORKS
        : operator == "/" ? divide(num1, num2) 
        : "";
 };
-
-function cantChooseZero() {
-  display.textContent = "N000000000" //something to not reset right away
-}
 
 function add(addend1, addend2) {
   return addend1 + addend2;
@@ -210,6 +200,6 @@ function multiply(multiplier1, multiplier2) {
 }
 
 function divide(dividend, divisor) {
-  return divisor === 0 ? cantChooseZero()
+  return divisor === 0 ? "can't divide by cat!"
     : dividend / divisor;
 }

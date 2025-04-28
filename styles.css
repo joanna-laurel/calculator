@@ -1,6 +1,14 @@
+.gidole-regular {
+  font-family: "Gidole", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -8,9 +16,9 @@ body {
 
 div {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
 }
 
 button {
@@ -18,9 +26,19 @@ button {
   width: 80px;
   font-size: 28px;
   margin: 0px 5px 0px 5px;
+  border-radius: 4px;
 }
 
-/*classes by order of appearance*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: rgb(88, 88, 88)
+}
+
+/*classes*/
 
 .operator {
   background-color: aquamarine;
@@ -33,40 +51,58 @@ button {
 }
 
 
-/*ids by order of appearance*/
+/*ids*/
 
 #calculatorDiv {
+  font-family: "Gidole", sans-serif;
+  font-size: 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 600px;
+  height: 670px;
   width: 450px;
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
   background-color: rgb(255, 94, 0);
-  border: 2pt solid orangered;
-    
+  border: 4pt solid rgb(163, 45, 2);
 }
 
 #displayDiv {
   display: flex;
   justify-content: right;
   padding-right: 30px;
-  height: 75px;
-  width: 330px;
+  height: 80px;
+  width: 318px;
   background-color: white;
+  color: rgb(8, 8, 8);
+  border: 3px solid gray;
   font-size: 28px;
-}
-
-
-#timesButton {
-  padding-top: 15px;
-  font-size: 42px;
+  margin-bottom: 20px;
+  border-radius: 0px;
 }
 
 #plusMinusButton {
-  font-size: 26px;
+  font-size: 22px;
 }
 
 #equalsButton {
   width: 170px;
+  font-size: 40px;
+}
+
+#decimalButton {
+  font-weight: 900;
+}
+
+#zeroButton {
+  font-size: 36px;
+}
+
+#clearButton {
+  background-color: rgb(241, 197, 75);
+}
+
+#backspaceButton {
+  background-color: rgb(211, 208, 194);
+  font-size: 50px;
+  padding-bottom: 20px;
 }
