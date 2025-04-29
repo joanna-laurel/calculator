@@ -4,13 +4,14 @@
   font-style: normal;
 }
 
-
-
 body {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: rgb(5, 32, 54);
+  background-color: rgb(18, 99, 102);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -22,32 +23,43 @@ div {
 }
 
 button {
-  height: 80px;
   width: 80px;
+  aspect-ratio: 1 / 1;
   font-size: 28px;
   margin: 0px 5px 0px 5px;
-  border-radius: 4px;
+  border-radius: 10px;
+  flex: 1 1 100%;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 a:hover {
-  color: rgb(88, 88, 88)
+  color: rgb(241, 197, 75);
+}
+
+p {
+  color: white;
 }
 
 /*classes*/
 
 .operator {
-  background-color: aquamarine;
+  background-color: rgb(241, 197, 75);
+  background-color: rgb(145, 155, 54);
   font-size: 36px;
 }
 
-
 .number {
-  background-color: cadetblue;
+  background-color: rgb(224, 224, 182); 
+}
+
+.buttonDiv {
+  display: flex;
+  height: 80px;
+  width: auto;
 }
 
 
@@ -57,40 +69,46 @@ a:hover {
   font-family: "Gidole", sans-serif;
   font-size: 28px;
   display: flex;
+  flex: 1 ;
   flex-direction: column;
   gap: 10px;
-  height: 670px;
-  width: 450px;
+  height: 620px;
+  width: 400px;
+  aspect-ratio: 65 / 100;
   padding: 20px 20px 40px 20px;
-  background-color: rgb(255, 94, 0);
-  border: 4pt solid rgb(163, 45, 2);
+  margin-top: 50px;
+  background-color: rgb(5, 32, 54);
+  border: 1px solid white;
 }
 
 #displayDiv {
-  display: flex;
-  justify-content: right;
-  padding-right: 30px;
-  height: 80px;
-  width: 318px;
+  justify-content: right; 
+  padding: 0px 20px;
+  height: 50px; 
+  width: 300px;
   background-color: white;
-  color: rgb(8, 8, 8);
-  border: 3px solid gray;
-  font-size: 28px;
-  margin-bottom: 20px;
-  border-radius: 0px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border: 1px solid rgb(223, 214, 203); 
+  font-size: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* font-size: calc(); */
+  text-wrap: nowrap;
+  margin-bottom: 25px;
+  border-radius: 2px;
 }
 
 #plusMinusButton {
   font-size: 22px;
-}
-
-#equalsButton {
-  width: 170px;
-  font-size: 40px;
+  background-color: rgb(241, 197, 75);
+  background-color: rgb(145, 155, 54);
+  
 }
 
 #decimalButton {
   font-weight: 900;
+  background-color: rgb(224, 224, 182); 
 }
 
 #zeroButton {
@@ -98,11 +116,24 @@ a:hover {
 }
 
 #clearButton {
-  background-color: rgb(241, 197, 75);
+  background-color: rgb(216, 46, 16);
+  /* background-color: rgb(241, 197, 75); */
+  /* background-color: rgb(241, 197, 75); */
+  flex: 1 1 80px;
 }
 
 #backspaceButton {
-  background-color: rgb(211, 208, 194);
+  background-color: rgb(216, 46, 16);
+  /* background-color: rgb(241, 197, 75); */
   font-size: 50px;
-  padding-bottom: 20px;
+  flex: 1 1 80px;
+}
+
+#equalsButton {
+  width: 170px;
+  aspect-ratio: 2.125 / 1;
+  font-size: 40px;
+  background-color: rgb(216, 46, 16);
+  /* background-color: rgb(241, 197, 75); */
+  flex: 1 1 170px;
 }

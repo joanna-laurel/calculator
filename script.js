@@ -1,3 +1,9 @@
+//remaining stuff
+//deal with larger numbers?
+//make mobile compatible aka it shrinks
+
+
+
 
 const display = document.getElementById("displayDiv");
 
@@ -21,7 +27,7 @@ function addEventListeners() {
 function handleClick(buttonText, buttonClass, buttonId) {
   buttonId === "zeroButton" ? addDigit("0") :
   buttonClass === "number" ? addDigit(buttonText) :
-  buttonText === "." ? addDecimal(".") :
+  buttonText === "." ? addDecimal() :
   buttonId === "plusButton" ? selectOperator("+") :
   buttonId === "minusButton" ? selectOperator("-") :
   buttonId === "timesButton" ? selectOperator("*") :
@@ -32,7 +38,7 @@ function handleClick(buttonText, buttonClass, buttonId) {
   buttonText === "=" ? canWeOperate() : "cats"
 }
 
-function updateDisplay() { //WORKS
+function updateDisplay() { 
   let multiply = "\u00d7";
   let divide = "\u00f7";
   let subtract = "\u2013";
@@ -53,22 +59,23 @@ function updateDisplay() { //WORKS
     "" : solution.slice().join("");
   
   display.textContent = 
-    firstNumber.length + secondNumber.length + solution.length > 16 ?
+    firstNumber.length + secondNumber.length + solution.length > 16 &&
+    solution.length > 0 ?
     (`${answer}`) : 
     (`${num1} ${displayOperator} ${num2} ${equalsSign} ${answer}`);
   }
 
-function addDigit(userDigit) { //WORKS
+function addDigit(userDigit) { 
   if (operator == "" 
-    && firstNumber.length < 8 
+    && firstNumber.length < 15 
     && solution == "") {
     firstNumber.push(userDigit);
   }
 
   if (operator !== "" 
-    && secondNumber.length < 8 
+    && secondNumber.length < 15 
     && solution == ""
-    && (firstNumber.length + secondNumber.length < 15)) {
+    && (firstNumber.length + secondNumber.length < 40)) {
     secondNumber.push(userDigit);
   }
 
@@ -79,16 +86,16 @@ function addDigit(userDigit) { //WORKS
   updateDisplay();
 }
 
-function addDecimal() { //WORKS
+function addDecimal() { 
   if (operator == "" 
-    && firstNumber.length < 8 
+    && firstNumber.length < 15 
     && solution.length < 1
     && !firstNumber.includes(".")) {
         firstNumber.push(".");
   }
 
   if (operator !== "" 
-    && secondNumber.length < 8 
+    && secondNumber.length < 15 
     && solution.length < 1
     && !secondNumber.includes(".")) {
         secondNumber.push(".");
@@ -100,7 +107,8 @@ function togglePositivity() {
   if (firstNumber.length > 0 
     && secondNumber.length < 1 
     && !firstNumber.includes("e")) {
-      changeSigns()}
+      changeSigns()
+    }
   
   function changeSigns() {
     if (firstNumber[0] !== "-") {
@@ -110,7 +118,7 @@ function togglePositivity() {
   }
 }
 
-function selectOperator(userOperator) { //WORKS
+function selectOperator(userOperator) { 
   if (operator == "" 
     && firstNumber.length > 0 
     && !(firstNumber[0] === "." && firstNumber.length === 1)) {
@@ -135,10 +143,9 @@ function selectOperator(userOperator) { //WORKS
   if (display.textContent == "can't divide by cat!") {
     display.textContent = "(maybe start over)";
   }
-
 }
 
-function backspaceOnce() { //WORKS
+function backspaceOnce() { 
   if (solution.length < 1) {
     secondNumber.length > 0 && equalsSign == "" ? 
     secondNumber.pop() :
@@ -149,23 +156,23 @@ function backspaceOnce() { //WORKS
   }
 }
 
-function clearEverything() { //WORKS
+function clearEverything() { 
   firstNumber = [];
   operator = "";
   secondNumber = [];
   equalsSign = "";
   solution = [];
-  display.textContent = ""; //doesn't work
+  display.textContent = ""; 
 }
 
-function canWeOperate() { //WORKS
+function canWeOperate() { 
   if (secondNumber.length > 0 && 
     !(secondNumber[0] === "." && secondNumber.length === 1)) {
     operate();
   }
 }
 
-function operate() { //WORKS
+function operate() { 
   let num1 = parseFloat(firstNumber.slice().join(""));
   let num2 = parseFloat(secondNumber.slice().join(""));
   
@@ -179,7 +186,7 @@ function operate() { //WORKS
   updateDisplay();
 }
 
-function calculate(num1, operator, num2) { //WORKS
+function calculate(num1, operator, num2) { 
   return operator == "+" ? add(num1, num2) 
        : operator == "-" ? subtract(num1, num2) 
        : operator == "*" ? multiply(num1, num2) 
