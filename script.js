@@ -1,9 +1,3 @@
-//remaining stuff
-//deal with larger numbers?
-//make mobile compatible aka it shrinks
-
-
-
 
 const display = document.getElementById("displayDiv");
 
