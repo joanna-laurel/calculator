@@ -1,9 +1,12 @@
-/* .gidole-regular {
-  font-family: "Gidole", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-} */
 
+@font-face {
+  font-family: 'gidoleregular';
+  src: url('fonts/gidole-regular-webfont.woff2') format('woff2'),
+       url('fonts/gidole-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -18,13 +21,16 @@ html {
 }
 
 body {
+  /* position: relative; */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* gap: auto; */
   color: rgb(5, 32, 54);
   background-color: rgb(224, 224, 182); 
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'gidoleregular', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; 
 }
 
 div {
@@ -54,6 +60,19 @@ a:hover {
   color: rgb(145, 155, 54);
 }
 
+footer {
+  /* display: flex; */
+  align-self: center;
+  text-align: center;
+  text-wrap: nowrap;
+  font-size: clamp(.5rem, 4vw, .6rem); 
+  color: rgb(18, 99, 102);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  /* position: absolute; */
+  /* bottom: 2rem; */
+}
+
 /*classes*/
 
 .operator {
@@ -63,10 +82,16 @@ a:hover {
 
 .number {
   background-color: rgb(18, 99, 102);
+  /* border: 3px ridge rgb(40, 139, 143);  */
   font-size: clamp(.5rem, 7vw, 1.2rem); 
 }
 
+/* .number:hover {
+  border: none; 
+} */
+
 .buttonDiv {
+  font-family: 'gidoleregular', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   justify-content: space-between;
   gap: .2rem;
@@ -75,6 +100,16 @@ a:hover {
 }
 
 /*ids*/
+
+#mainDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  min-height: 690px;
+  /* border: solid blue; */
+  padding-bottom: 4vh;
+}
 
 #displayDiv {
   display: flex;
@@ -86,7 +121,7 @@ a:hover {
   height: clamp(40px, 13vw, 2.3rem); 
   flex: 0 1 auto;
   background-color: white; 
-  border: 3px solid rgb(224, 224, 182); 
+  /* border: 3px inset rgb(224, 224, 182);  */
   font-size: clamp(.5rem, 4vw, .8rem); 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -96,12 +131,14 @@ a:hover {
 }
 
 #calculatorDiv {
-  font-family: "Gidole", sans-serif;
+  font-family: 'gidoleregular', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   flex: 0 1 400px;
   width: 90vw;
   max-width: 400px;
+  aspect-ratio: 4 / 6.4;
+  /* max-width: 90vw, 400px; */
   gap: .2rem;
   font-size: 26px;
   /* padding: 1.5rem 1rem 2rem 1rem; */
@@ -109,8 +146,11 @@ a:hover {
   padding-bottom: clamp(2.3rem, 15vw, 3.0rem);
   padding-left: clamp(1rem, 11vw, 1.5rem);
   padding-right: clamp(1rem, 11vw, 1.5rem);
-  margin-top: 5vw;
+  /* margin-top: 5vw; */
   background-color: rgb(5, 32, 54);
+  /* border: 5px outset rgb(5, 32, 54); */
+  box-shadow: 0px 5px 20px 5px rgb(34, 63, 73);
+  /* margin: 50vw 50vw 50vw 50vw; */
 }
 
 
@@ -146,14 +186,4 @@ a:hover {
   font-size: clamp(1rem, 8vw, 1.5rem); 
   background-color: rgb(216, 46, 16);
   flex: 0 1 168px;
-}
-
-#pageFooter {
-  display: flex;
-  text-align: center;
-  text-wrap: nowrap;
-  width: 80vw;
-  font-size: clamp(.2rem, 3vw, .5rem); 
-  color: rgb(18, 99, 102);
-  margin: 5px;
 }
